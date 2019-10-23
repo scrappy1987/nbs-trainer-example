@@ -1,5 +1,7 @@
 package com.qa.business;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,19 +18,20 @@ public class TrainerService {
 
 	}	
 	
-	public Trainer getAllTrainer() {
-		return trainerRepo.getAllTrainer();
+	public List<Trainer> getAllTrainer() {
+		return trainerRepo.findAll();
 	}
 
-	public Trainer addNewTrainer() {
-		return trainerRepo.addNewTrainer();
+	public Trainer addNewTrainer(Trainer trainer) {
+		return trainerRepo.save(trainer);
 	}
 
-	public Trainer updateTrainer() {
-		return trainerRepo.updateTrainer();
+	public Trainer updateTrainer(Trainer trainer) {
+		return trainerRepo.save(trainer);
 	}
 
-	public Trainer deleteTrainer() {
-		return trainerRepo.deleteTrainer();
+	public String deleteTrainer(Long id) {
+		trainerRepo.deleteById(id);
+		return "Trainer succesfully deleted";
 	}
 }
