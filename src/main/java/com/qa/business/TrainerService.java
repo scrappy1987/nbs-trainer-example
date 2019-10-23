@@ -1,29 +1,34 @@
 package com.qa.business;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qa.persistence.domain.Trainer;
+import com.qa.persistence.repository.TrainerRepository;
 
 @Service
 public class TrainerService {
 
+	@Autowired
+	private TrainerRepository trainerRepo;
+	
 	public TrainerService() {
 
-	}
-
+	}	
+	
 	public Trainer getAllTrainer() {
-		return new Trainer("Jim", "Gordon");
+		return trainerRepo.getAllTrainer();
 	}
 
 	public Trainer addNewTrainer() {
-		return new Trainer("Jim", "Gordon");
+		return trainerRepo.addNewTrainer();
 	}
 
 	public Trainer updateTrainer() {
-		return new Trainer("Jim", "Gordon");
+		return trainerRepo.updateTrainer();
 	}
 
 	public Trainer deleteTrainer() {
-		return new Trainer("Jim", "Gordon");
+		return trainerRepo.deleteTrainer();
 	}
 }
