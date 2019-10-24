@@ -13,12 +13,15 @@ public class TrainerService {
 
 	@Autowired
 	private TrainerRepository trainerRepo;
-	
+
 	public TrainerService() {
 
-	}	
-	
+	}
+
 	public List<Trainer> getAllTrainer() {
+		if (trainerRepo.findAll().isEmpty()) {
+			setUpTrainers();
+		}
 		return trainerRepo.findAll();
 	}
 
@@ -33,5 +36,12 @@ public class TrainerService {
 	public String deleteTrainer(Long id) {
 		trainerRepo.deleteById(id);
 		return "Trainer succesfully deleted";
+	}
+	
+	private void setUpTrainers() {
+		Trainer john = new Trainer("John", "Gordon");
+		Trainer chris = new Trainer("Chris", "Perrins");
+		trainerRepo.save(john);
+		trainerRepo.save(chris);
 	}
 }
